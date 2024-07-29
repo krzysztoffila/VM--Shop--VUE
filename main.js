@@ -5,5 +5,9 @@ const app = Vue.createApp({
       premium: false,
     };
   },
-  methods: {},
+  methods: {
+    updateCart() {
+      this.cart += 1;
+    },
+  },
 });
