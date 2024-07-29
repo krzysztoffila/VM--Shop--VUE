@@ -1,4 +1,10 @@
 app.component("product-display", {
+  props: {
+    premium: {
+      type: Boolean,
+      required: true,
+    },
+  },
   template:
     /*html*/
     `<div class="product-display">
@@ -12,10 +18,9 @@ app.component("product-display", {
           <p v-if="inStock > 10">In Stock</p>
           <p v-else-if="inStock <= 10 && inStock > 0">Almost sold out!</p>
           <p v-else>Out of Stock</p>
+          <p> Shipping: {{ shipping }}</p>
           <p>{{ description }}</p>
-          <ul>
-            <li v-for="detail in details">{{ detail }}</li>
-          </ul>
+          <product-details :details="details"></product-details>
           <div class="color-circle" :style="{ backgroundColor: variant.color }" v-for="(variant, index) in variants"
             :key="variant.id" @mouseover="updateVariant(index)">
           </div>
@@ -67,6 +72,9 @@ app.component("product-display", {
     },
     onSale() {
       return `${this.brand} ${this.product} is on sale`;
+    },
+    shipping() {
+      return this.premium ? "Free" : "2.99$";
     },
   },
 });
