@@ -4,6 +4,7 @@ const app = Vue.createApp({
       product: "Socks",
       description: "Fancy Socks with Vue logo",
       image: "./assets/images/socks_green.jpg",
+      inventory: 100,
     };
   },
 });
